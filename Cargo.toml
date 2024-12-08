@@ -1,0 +1,21 @@
+[package]
+name = "chromium-switches"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+log = "0.4.6"
+tracing-subscriber = { version = "0.3", features = [
+    "env-filter",
+] } # Utilities for implementing and composing `tracing` subscribers.
+
+
+hyper_ast = { git = "https://github.com/quentinLeDilavrec/HyperAST.git", version = "0.2.0", rev = "476ea22a16a7ba962e06954349eef66d1d498594" }
+hyper_ast_cvs_git = { git = "https://github.com/quentinLeDilavrec/HyperAST.git", version = "0.2.0", rev = "476ea22a16a7ba962e06954349eef66d1d498594" }
+hyper_ast_tsquery = { git = "https://github.com/quentinLeDilavrec/HyperAST.git", version = "0.2.0", rev = "476ea22a16a7ba962e06954349eef66d1d498594" }
+hyper_ast_gen_ts_cpp = { git = "https://github.com/quentinLeDilavrec/HyperAST.git", version = "0.2.0", rev = "476ea22a16a7ba962e06954349eef66d1d498594" }
+## for local dev
+# hyper_ast = { path = "../HyperAST/hyper_ast" }
+# hyper_ast_cvs_git = { path = "../HyperAST/cvs/git" }
+# hyper_ast_tsquery = { path = "../HyperAST/tsquery" }
+# hyper_ast_gen_ts_cpp = { path = "../HyperAST/gen/tree-sitter/cpp" }
