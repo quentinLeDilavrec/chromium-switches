@@ -54,9 +54,9 @@ use hyper_ast_gen_ts_cpp::{
 use hyper_ast_tsquery::Language;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // SAFETY: trivial when first thing in main
-    // only process the *switches named files
-    unsafe { hyper_ast_cvs_git::processing::file_sys::ONLY_SWITCHES = true };
+    // // SAFETY: trivial when first thing in main
+    // // only process the *switches named files
+    // unsafe { hyper_ast_cvs_git::processing::file_sys::ONLY_SWITCHES = true };
     println!("{}", QUERY);
 
     let _ = tracing_subscriber::fmt()
@@ -78,6 +78,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let language = hyper_ast_cvs_git::resolve_language(&language).unwrap();
     let code = ast_from_repo(&mut repositories, repo_spec, config, commit)?;
     // let code = ast_from_text(&mut repositories, EXAMPLE_SPACING, language.clone());
+
+    println!("parsing_time: {}", repositories.processor.parsing_time.as_secs_f64());
+    println!("processing_time: {}", repositories.processor.processing_time.as_secs_f64());
+
     querying_cpp(&repositories, code, language, query, true)
 }
 
@@ -149,6 +153,28 @@ fn test_query_incr_exact() -> Result<(), Box<dyn std::error::Error>> {
     //     .unwrap()
     //     .0;
     compare_querying_with_and_without_skipping(&repositories, code, language, query)
+}
+#[test]
+fn test_query_if_statement() -> Result<(), Box<dyn std::error::Error>> {
+    use hyper_ast_cvs_git::preprocessed::{child_by_name, child_by_type};
+    // let _ = tracing_subscriber::fmt()
+    //     .with_env_filter(tracing_subscriber::EnvFilter::from_default_env())
+    //     // .with_env_filter("hyper_ast_cvs_git=trace,chromium-switches=trace")
+    //     .try_init()
+    //     .unwrap();
+
+    let query = r#"(preproc_if
+  condition: (identifier) @name  
+  ) @root"#;
+    let language = "Cpp";
+    let mut repositories = PreProcessedRepositories::default();
+    let language = hyper_ast_cvs_git::resolve_language(&language).unwrap();
+    let code = ast_from_text(&mut repositories, EXAMPLE1, language.clone());
+    let stores = &repositories.processor.main_stores;
+    // let code = child_by_type(stores, code, &as_any(&Type::NamespaceDefinition))
+    //     .unwrap()
+    //     .0;
+    querying_cpp(&repositories, code, language, query, false)
 }
 
 /// use this in a test if you suspect a querying discrepancy on a commit due to the subtree skipping feature,
@@ -358,14 +384,7 @@ fn ast_from_text(
     static DQ: &str = "(_)";
     let (precomp, _) =
         hyper_ast_tsquery::Query::with_precomputed(DQ, language, precomputeds).unwrap();
-    let mut tree_gen = {
-        CppTreeGen {
-            line_break: "\n".as_bytes().to_vec(),
-            stores,
-            md_cache: &mut md_cache,
-            more: precomp,
-        }
-    };
+    let mut tree_gen = CppTreeGen::new(stores, &mut md_cache).with_more(precomp);
     let tree = hyper_ast_gen_ts_cpp::legion::tree_sitter_parse(text.as_bytes());
     let tree = match tree {
         Ok(tree) => {

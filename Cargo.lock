@@ -603,7 +603,7 @@ dependencies = [
 [[package]]
 name = "hyper_ast"
 version = "0.2.0"
-source = "git+https://github.com/quentinLeDilavrec/HyperAST.git?rev=476ea22a16a7ba962e06954349eef66d1d498594#476ea22a16a7ba962e06954349eef66d1d498594"
+source = "git+https://github.com/quentinLeDilavrec/HyperAST.git?rev=b72f8cdad0486e91b5674c319c63a9ed2acefa4c#b72f8cdad0486e91b5674c319c63a9ed2acefa4c"
 dependencies = [
  "bevy_ecs",
  "bitvec",
@@ -627,12 +627,13 @@ dependencies = [
  "string-interner",
  "strum",
  "strum_macros",
+ "tree-sitter",
 ]
 
 [[package]]
 name = "hyper_ast_cvs_git"
 version = "0.2.0"
-source = "git+https://github.com/quentinLeDilavrec/HyperAST.git?rev=476ea22a16a7ba962e06954349eef66d1d498594#476ea22a16a7ba962e06954349eef66d1d498594"
+source = "git+https://github.com/quentinLeDilavrec/HyperAST.git?rev=b72f8cdad0486e91b5674c319c63a9ed2acefa4c#b72f8cdad0486e91b5674c319c63a9ed2acefa4c"
 dependencies = [
  "enumset",
  "git2",
@@ -651,7 +652,7 @@ dependencies = [
 [[package]]
 name = "hyper_ast_gen_ts_cpp"
 version = "0.2.0"
-source = "git+https://github.com/quentinLeDilavrec/HyperAST.git?rev=476ea22a16a7ba962e06954349eef66d1d498594#476ea22a16a7ba962e06954349eef66d1d498594"
+source = "git+https://github.com/quentinLeDilavrec/HyperAST.git?rev=b72f8cdad0486e91b5674c319c63a9ed2acefa4c#b72f8cdad0486e91b5674c319c63a9ed2acefa4c"
 dependencies = [
  "atomic-counter",
  "bitvec",
@@ -673,7 +674,7 @@ dependencies = [
 [[package]]
 name = "hyper_ast_gen_ts_java"
 version = "0.2.0"
-source = "git+https://github.com/quentinLeDilavrec/HyperAST.git?rev=476ea22a16a7ba962e06954349eef66d1d498594#476ea22a16a7ba962e06954349eef66d1d498594"
+source = "git+https://github.com/quentinLeDilavrec/HyperAST.git?rev=b72f8cdad0486e91b5674c319c63a9ed2acefa4c#b72f8cdad0486e91b5674c319c63a9ed2acefa4c"
 dependencies = [
  "atomic-counter",
  "bitvec",
@@ -698,7 +699,7 @@ dependencies = [
 [[package]]
 name = "hyper_ast_gen_ts_xml"
 version = "0.2.0"
-source = "git+https://github.com/quentinLeDilavrec/HyperAST.git?rev=476ea22a16a7ba962e06954349eef66d1d498594#476ea22a16a7ba962e06954349eef66d1d498594"
+source = "git+https://github.com/quentinLeDilavrec/HyperAST.git?rev=b72f8cdad0486e91b5674c319c63a9ed2acefa4c#b72f8cdad0486e91b5674c319c63a9ed2acefa4c"
 dependencies = [
  "hashbrown 0.14.5",
  "hyper_ast",
@@ -713,7 +714,7 @@ dependencies = [
 [[package]]
 name = "hyper_ast_tsquery"
 version = "0.2.0"
-source = "git+https://github.com/quentinLeDilavrec/HyperAST.git?rev=476ea22a16a7ba962e06954349eef66d1d498594#476ea22a16a7ba962e06954349eef66d1d498594"
+source = "git+https://github.com/quentinLeDilavrec/HyperAST.git?rev=b72f8cdad0486e91b5674c319c63a9ed2acefa4c#b72f8cdad0486e91b5674c319c63a9ed2acefa4c"
 dependencies = [
  "hyper_ast",
  "log",
